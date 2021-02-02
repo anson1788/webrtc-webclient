@@ -116,7 +116,12 @@ async function startViewer(localView, remoteView, formValues, onStatsReport, onR
         if (formValues.sendVideo || formValues.sendAudio) {
             try {
                 viewer.localStream = await navigator.mediaDevices.getUserMedia(constraints);
-                viewer.localStream.getTracks().forEach(track => viewer.peerConnection.addTrack(track, viewer.localStream));
+                /*
+                viewer.localStream.getTracks().forEach(track => {
+                    viewer.peerConnection.addTrack(track, viewer.localStream)
+                    track.stop()
+                });*/
+                
                 localView.srcObject = viewer.localStream;
             } catch (e) {
                 console.error('[VIEWER] Could not find webcam');
