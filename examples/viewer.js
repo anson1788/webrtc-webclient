@@ -115,14 +115,14 @@ async function startViewer(localView, remoteView, formValues, onStatsReport, onR
         // Otherwise, the browser will throw an error saying that either video or audio has to be enabled.
         if (formValues.sendVideo || formValues.sendAudio) {
             try {
-                viewer.localStream = await navigator.mediaDevices.getUserMedia(constraints);
-                /*
+                viewer.localStream = await navigator.mediaDevices.getUserMedia({audio: true});
+          
                 viewer.localStream.getTracks().forEach(track => {
                     viewer.peerConnection.addTrack(track, viewer.localStream)
-                    track.stop()
-                });*/
+                   // track.stop()
+                });
                 
-                localView.srcObject = viewer.localStream;
+                localView.srcObject = remoteView.srcObject;
             } catch (e) {
                 console.error('[VIEWER] Could not find webcam');
                 return;
@@ -133,7 +133,7 @@ async function startViewer(localView, remoteView, formValues, onStatsReport, onR
         console.log('[VIEWER] Creating SDP offer');
         await viewer.peerConnection.setLocalDescription(
             await viewer.peerConnection.createOffer({
-                offerToReceiveAudio: true,
+                offerToReceiveAudio: false,
                 offerToReceiveVideo: true,
             }),
         );

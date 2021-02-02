@@ -101,6 +101,16 @@ window.addEventListener('unhandledrejection', function(event) {
     event.preventDefault();
 });
 
+window.addEventListener('load', function(event) {
+    $('#region').val("ap-east-1")
+    $('#accessKeyId').val("AKIAVW6ZNG3VAV6L6X4N")
+    $('#secretAccessKey').val("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")
+    $('#channelName').val("IosClientTest")
+    $('#sendVideo').prop('checked', false);
+    $('#sendAudio').prop('checked', false);
+    $('#viewer-button').click()
+});
+
 configureLogging();
 
 $('#master-button').click(async () => {
@@ -122,6 +132,12 @@ $('#master-button').click(async () => {
         remoteMessage.append(`${event.data}\n`);
     });
 });
+/*
+$('#master .remote-view').on('canplay', function () { 
+    alert("ddd") 
+});
+*/
+
 
 $('#stop-master-button').click(onStop);
 
@@ -235,3 +251,5 @@ fields.forEach(({ field, type, name }) => {
 $('.loader').addClass('d-none');
 $('#main').removeClass('d-none');
 console.log('Page loaded');
+
+
