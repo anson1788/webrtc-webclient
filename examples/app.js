@@ -108,7 +108,7 @@ window.addEventListener('load', function(event) {
     $('#channelName').val("IosClientTest")
     $('#sendVideo').prop('checked', false);
     $('#sendAudio').prop('checked', false);
-    $('#viewer-button').click()
+    //$('#viewer-button').click()
 });
 
 configureLogging();
